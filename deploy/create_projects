@@ -1,0 +1,8 @@
+#!/bin/bash
+for i in {01..25}; do 
+  openstack project create user$i
+  openstack user create --project user$i --password contrail123 user$i
+  openstack role add --user user$i --project user$i admin
+  openstack network create --project user$i dummy-net-user$i
+  openstack network delete dummy-net-user$i
+done

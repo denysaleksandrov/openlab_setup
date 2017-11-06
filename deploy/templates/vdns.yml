@@ -1,0 +1,37 @@
+heat_template_version: 2015-04-30
+
+description: >
+  HOT template to create a VirtualDns:
+parameters:
+  name:
+    type: string
+    description: name for the VirtualDns
+  virtual_DNS_data_floating_ip_record:
+    type: string
+    description: Decides how floating ip records are added
+  virtual_DNS_data_domain_name:
+    type: string
+    description: Default domain name for this virtual DNS server
+  virtual_DNS_data_record_order:
+    type: string
+    description: Order of DNS load balancing, fixed, random, round-robin
+  virtual_DNS_data_default_ttl_seconds:
+    type: number
+    description: Default Time To Live for DNS records
+  domain:
+    type: string
+    description: domain for the VirtualDns
+
+resources:
+  template_VirtualDns:
+    type: OS::ContrailV2::VirtualDns
+    properties:
+      name: { get_param: name }
+      virtual_dns_data:
+        {
+          virtual_dns_data_floating_ip_record: { get_param: virtual_DNS_data_floating_ip_record },
+	  virtual_dns_data_domain_name: { get_param: virtual_DNS_data_domain_name },
+          virtual_dns_data_record_order: { get_param: virtual_DNS_data_record_order },
+          virtual_dns_data_default_ttl_seconds: { get_param: virtual_DNS_data_default_ttl_seconds },
+        }
+      domain: { get_param: domain }

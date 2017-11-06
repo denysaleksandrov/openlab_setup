@@ -1,0 +1,30 @@
+heat_template_version: 2015-04-30
+
+parameters:
+  vn:
+    type: string
+    description: Name of left network to be created
+  project:
+    type: string
+    description: project for the NetworkIpam
+  network_ipam_mgmt_ipam_dns_method:
+    type: string
+    description: ipam_dns_method for the NetworkIpam
+  network_ipam_mgmt_ipam_dns_server_virtual_dns_server_name:
+    type: string
+    description: In case of virtual DNS server, name of virtual DNS server
+
+resources:
+  template_NetworkIpam:
+    type: OS::ContrailV2::NetworkIpam
+    properties:
+      name: { get_param: vn }
+      project: { get_param: project }
+      network_ipam_mgmt:
+        {
+          network_ipam_mgmt_ipam_dns_method: { get_param: network_ipam_mgmt_ipam_dns_method },
+          network_ipam_mgmt_ipam_dns_server:
+            {
+              network_ipam_mgmt_ipam_dns_server_virtual_dns_server_name: { get_param: network_ipam_mgmt_ipam_dns_server_virtual_dns_server_name },
+            },
+        }

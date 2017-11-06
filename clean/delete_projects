@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in {01..25}; do 
+  openstack project delete user$i
+  openstack user delete user$i
+done

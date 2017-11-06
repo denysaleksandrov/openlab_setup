@@ -1,0 +1,40 @@
+heat_template_version: 2015-04-30
+
+description: Create a new Project. Assign a user and user-role pair.
+
+parameters:
+  project_name:
+    type: string
+    description: project name
+  user_role1:
+    type: string
+    description: name of the user role.
+  user_role2:
+    type: string
+    description: name of the user role.
+  project_user:
+    type: string
+    description: Project user
+  project_user_passwd:
+    type: string
+    description: project user initial password
+
+resources:
+  project:
+    type: OS::Keystone::Project
+    properties:
+      name: { get_param: project_name }
+      domain: default
+      description: New Project
+  user:
+    type: OS::Keystone::User
+    properties:
+      name: { get_param: project_user }
+      domain: default
+      default_project: { get_resource: project }
+      password: { get_param: project_user_passwd }
+      roles:
+        - role: { get_param: user_role1 }
+          project: { get_resource: project }
+        - role: { get_param: user_role2 }
+          project: { get_resource: project }

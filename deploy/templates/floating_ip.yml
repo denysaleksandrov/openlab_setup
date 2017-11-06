@@ -1,0 +1,31 @@
+heat_template_version: 2015-04-30
+
+description: >
+  HOT template to create a FloatingIp:
+parameters:
+  name:
+    type: string
+    description: name for the FloatingIp
+    # required: optional
+  floating_ip_address_family:
+    type: string
+    description: Ip address family of the floating ip, IpV4 or IpV6
+    # operations: CRUD
+    # required: optional
+  project_refs:
+    type: string
+    description: Reference to project is which this floating ip was allocated.
+    # required: optional
+  floating_ip_pool:
+    type: string
+    description: floating_ip_pool for the FloatingIp
+    # required: optional
+
+resources:
+  template_FloatingIp:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      name: { get_param: name }
+      floating_ip_address_family: { get_param: floating_ip_address_family }
+      project_refs: [{ get_param: project_refs }]
+      floating_ip_pool: { get_param: floating_ip_pool }
