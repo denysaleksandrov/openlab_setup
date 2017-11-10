@@ -1,0 +1,41 @@
+# Ignore compiled python and swap files
+*.pyc
+.*swp
+
+# Ignore development database
+db.sqlite3
+
+# Ignore coverage files
+.coverage
+htmlcov/
+
+# Ignore reports files
+reports/
+
+# Ignore python cache files
+__pycache__
+
+# Ignore sphinx caches
+docs/_*
+
+# Ignore global static directory
+/static/
+
+# Ignore PhantomJS log file
+ghostdriver.log
+
+# Ignore MAC crap
+.DS_Store
+
+# For now, ignore ES6 files
+*.es6
+
+# For now, dont include js tool libraries
+node_modules/
+bower_components/
+
+# Ignore celerybeat schedule database
+celerybeat-schedule
+
+# Ignore log files
+*.log
