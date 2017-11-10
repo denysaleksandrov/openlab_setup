@@ -59,11 +59,11 @@ def get_floating_ip_stack_template(tenant, name):
 # DEPRECATED: project and users created by heat are not synced to contrail
 #def get_project_and_user_stack_template(tenant, name):
 #    template = {
-#            'project_name': tenant,
-#            'user_role1': 'admin',
-#	    'user_role2': '_member_',
-#            'project_user': tenant,
-#	    'password': 'contrail123'
+#        'project_name': tenant,
+#        'user_role1': 'admin',
+#        'user_role2': '_member_',
+#        'project_user': tenant,
+#        'password': '*'
 #    }
 #    return template
 

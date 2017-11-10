@@ -7,8 +7,8 @@ import keystoneclient.v2_0.client as ksclient
 from novaclient.client import Client
 
 VNC_LIB = vnc_api.VncApi(api_server_host='127.0.0.1', 
-		         username='admin',
-	                 password='contrail123', 
+	        	         username='admin',
+	                     password='*', 
                          tenant_name='admin')
 
 def clear_env(obj_name):
@@ -50,10 +50,8 @@ def delete_obj_back_refs(obj, br_type):
 
 def get_nova(creds=None, user=None, project=None):
     print(user, project)
-    if not creds and not user:
-    	nova = Client('2', 'admin', 'contrail123', 'admin', 'http://172.30.165.30:5000/v2.0/')  
-    elif not creds and user:
-    	nova = Client('2', user, 'contrail123', project, 'http://172.30.165.30:5000/v2.0/')  
+    if not creds and user:
+    	nova = Client('2', user, '*', project, 'http://os_ip:5000/v2.0/')  
     else:
         nova = Client(*creds.values())
     return nova
